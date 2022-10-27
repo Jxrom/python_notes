@@ -329,3 +329,46 @@ print(a)
 nums = [11, 22, 33, 44, 55]
 res = list(filter(lambda x: x%2==0, nums))
 print(res)
+
+# GENERATORS
+
+"""
+    Generators are a type of iterable, like lists or tuples.
+    Unlike lists, they don't allow indexing with arbitrary indices, but 
+    they can still be iterated through with for loops.
+
+    They can be created using functions and the yield statement.
+"""
+
+def countdown():
+    i = 5
+    while i > 0:
+        yield i
+        i -= 1
+
+for i in countdown():
+    print(i)
+
+
+
+def add_num():
+    for i in range(20):
+        yield i 
+        i += 1
+        print(i)
+
+print(add_num())
+ 
+def five(x):
+    for i in range(20):
+        yield 5 * x
+
+for i in five(2):
+    print(i)
+
+def infinite_spike():
+    while True:
+        yield "Spike!"
+
+for i in infinite_spike():
+    print(i)
