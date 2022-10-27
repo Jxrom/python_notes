@@ -2,6 +2,11 @@
 # OCTOBER 24, 2022
 
 # LISTS
+from cProfile import label
+from dataclasses import dataclass
+import re
+
+
 x = ['hi', 'hello', 'welcome']
 
 # DICTIONARIES
@@ -231,3 +236,96 @@ impure(2)
 impure(7)
 
 print(some_list)    
+
+# PURE FUNCTIONS
+
+"""
+    Using pure functions has both advantages and disadvantages. 
+    Pure functions are:
+        - easier to reason about and test.
+        - more efficient. Once the function has been evaluated for an input,
+        the result can be stored and referred to the next time the function
+        of that input is needed, reducing the number of times the function
+        is called. This is called memoization.
+        - easier to run in parallel. 
+
+    Pure functions are more difficult to write in some situations.
+"""
+
+# LAMBDAS
+
+"""
+    Creating a function normally (using def) assigns it to a variable with
+    its name automatically.
+
+    Python allows us to create functions on-the-fly, provided that they are
+    created using lambda syntax.
+"""
+
+def my_func(f, arg):
+    return f(arg)
+
+print(my_func(lambda x: 2*x*x, 5))
+
+"""
+    Functions created using the lambda syntax are known as anonymous.
+
+    Lamda functions aren't as powerful as named functions.
+
+    They can only do things that require a single expression -- usually
+    equivalent to a single line of code.
+"""
+
+# NAMED FUNCTION
+def polynomial(x):
+    return x**2 + 5*x + 4
+print(polynomial(-4))
+
+# LAMBDA
+print((lambda x: x**2 + 5*x + 4) (-4))
+
+# MAP
+
+"""
+    The built-in functions map and filter are very useful higher-order 
+    functions that operate on lists (or similar objects called iterables).
+
+    The function map takes a function and an iterable as arguments, and
+    returns a new iterable with the function applied to each argument.
+"""
+
+def add_five(x):
+    return x + 5
+
+nums = [11, 22, 33, 44, 55]
+result = list(map(add_five, nums))
+
+print(result)
+
+# USING LAMBDAS
+
+nums = [11, 22, 33, 44, 55]
+
+result = list(map(lambda x: x+5, nums))
+print(result)
+
+result_y = (lambda y: y**3) (2)
+
+print(result_y)
+
+nums = [11, 22, 33]
+
+a = list(map(lambda x: x*5, nums))
+
+print(a)
+
+# FILTER
+
+"""
+    The function filter filters an iterable by leaving only the items that 
+    math a condition (also called a predicate)
+"""
+
+nums = [11, 22, 33, 44, 55]
+res = list(filter(lambda x: x%2==0, nums))
+print(res)
