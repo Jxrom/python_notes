@@ -431,3 +431,26 @@ decorated()
 
 print_text = decor(print_text)
 print_text()
+
+"""
+    In our previous example, we decorated our function by replacing the variable
+    containing the function with a wrapped version.
+"""
+
+def print_text():
+    print("Hello world!")
+
+print_text = decor(print_text)
+
+"""
+    This pattern can be used at any time, to wrap any function.
+    Python provides support to wrap a function in a decorator by pre-pending
+    the function definition with a decorator name and the @symbol.
+    If we are defining a function we can "decorate" it with the @ symbol like:
+"""
+
+@decor
+def print_text():
+    print("Hello World!")
+
+print_text()
