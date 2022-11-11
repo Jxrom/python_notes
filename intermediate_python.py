@@ -454,3 +454,131 @@ def print_text():
     print("Hello World!")
 
 print_text()
+
+# RECURSION
+
+"""
+    Recursion is a very important concept in functional programming. The fundamental
+    part of recursion is self-reference -- functions calling themselves.
+
+    It is used to solve problems that can be broken up into easier 
+    sub-problems of the same type.
+"""
+
+def factorial(x):
+    if x == 1:
+        return 1
+    else:
+        return x * factorial(x-1)
+    
+print(factorial(5))
+
+"""
+    Recursion can also be indirect. One function can call a second, which
+    calls the first, calls the second, and so on. This can occur with any
+    number of functions.
+"""
+
+def is_even(x):
+    if x == 0:
+        return True
+    else:
+        return is_odd(x-1)
+
+def is_odd(x):
+    return not is_even(x)
+
+print(is_odd(17))
+print(is_even(23))
+print(is_even(22))
+
+def convert(num): 
+   if num == 0:
+        return 0
+   return (num % 2 + 10 * convert(num // 2)) 
+
+
+def fib(x):
+  if x == 0 or x == 1:
+    return 1
+  else: 
+    return fib(x-1) + fib(x-2)
+print(fib(4))
+
+def EvenNums(num):
+    print(num)
+    if num % 2 != 0:
+        print("Please enter an even number")
+    elif num == 2:
+        return num
+    else:
+        return EvenNums(num-2)
+
+EvenNums(9)
+
+# NUMBER: 0 1 1 2 3 5 8 13 21
+# INDEX:  0 1 2 3 4 5 6 7  8
+
+import time
+
+def fibonacci(idx):
+    seq = [0, 1]
+    
+    for i in range(idx):
+        seq.append(seq[-1] + seq[-2])
+    return seq[-2]
+
+def Fibonacci(idx):
+    if idx <= 1:
+        return idx
+    else:
+        return Fibonacci(idx-1) + Fibonacci(idx-2)
+
+print("**** recursion ****")
+rec = time.time()
+print(Fibonacci(8))
+print("speed : " + str(time.time()-rec))
+
+print("**** iteration ****")
+it = time.time()
+print(fibonacci(8))
+print("speed : " + str(time.time()-it))
+
+# * args
+
+"""
+    Python allows you to have functions with varying numbers of arguments.
+    Using *args as a function parameter enables you to pass an arbitrary
+    number of arguments to that function. The arguments are then accessible
+    as the tuple in the body of the function.
+"""
+
+def function(name_arg, *args):
+    print(name_arg)
+    print(args)
+
+function(1, 2, 3, 4, 5)
+
+"""
+    The parameter *args must come after the named parameters to a function.
+    The name args is just a convention; you can choose to use another.
+"""
+
+# **kwargs 
+
+"""
+    **kwargs(standing for keyword arguments) allows you to handle named
+    arguments that you have not defined in advance.
+
+    The keyword arguments return a dictionary in which the keys are 
+    argument names, and the values are the argument values.
+"""
+
+def my_func(x, y=7, *args, **kwargs):
+    print(kwargs)
+
+my_func(2, 3, 4, 5, 6, a=7, b=8)
+
+"""
+    The arguments returned by **kwargs are not included in *args.
+"""
